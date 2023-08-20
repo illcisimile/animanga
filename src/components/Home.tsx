@@ -22,7 +22,7 @@ const Home = () => {
     isLoading,
     isError,
     error,
-  } = useQuery<InfoProps>('topManga', () => fetchData(selectedUrl));
+  } = useQuery<InfoProps>('randomAnimeManga', () => fetchData(selectedUrl));
 
   if (isLoading) {
     return <Loading />;
