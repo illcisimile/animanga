@@ -9,6 +9,8 @@ import { InfoProps } from '../types';
 
 import { fetchData } from '../api';
 
+import { FaShuffle } from 'react-icons/fa6';
+
 const Home = () => {
   const apiUrls = [
     'https://api.jikan.moe/v4/random/anime?sfw=true',
@@ -22,6 +24,7 @@ const Home = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery<InfoProps>('randomAnimeManga', () => fetchData(selectedUrl));
 
   if (isLoading) {
@@ -43,7 +46,15 @@ const Home = () => {
         />
       </div>
 
-      <h3 className='text-center font-semibold'>you might like</h3>
+      <div className='flex flex-col items-center gap-2'>
+        <h3 className='font-semibold'>you might like</h3>
+        <button
+          className='rounded bg-[#482307] px-4 py-2 font-bold text-white hover:bg-[#a1724e]'
+          onClick={() => refetch()}
+        >
+          random <FaShuffle className='inline' />
+        </button>
+      </div>
       <Info details={randomAnimeManga as InfoProps} />
     </div>
   );
