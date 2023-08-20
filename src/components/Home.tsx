@@ -1,8 +1,6 @@
-// import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Info from './Info';
-// import Card from './Card';
 import Loading from './Loading';
 
 import { InfoProps } from '../types';
@@ -44,8 +42,15 @@ const Home = () => {
           type='text'
           placeholder='fate/stay night'
         />
+        <div className='max-w-4xl p-2'>
+          <blockquote className='text-center text-lg italic text-[#482307]'>
+            "In their heart, everyone has faith that their victory exists.
+            However, in the face of time and destiny, the act of faith is
+            fruitless and fleeting at best."
+          </blockquote>
+          <cite className='mt-4 block text-center text-[#482307]'>— C.C.</cite>
+        </div>
       </div>
-
       <div className='flex flex-col items-center gap-2'>
         <h3 className='font-semibold'>you might like</h3>
         <button

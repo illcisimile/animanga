@@ -32,7 +32,7 @@ const Navbar = () => {
             <ul className='hidden md:flex md:gap-2'>
               <li>
                 <Link
-                  to='/seasonal'
+                  to='/seasonal-anime'
                   className='p-2 font-semibold hover:rounded hover:bg-[#a1724e] hover:text-white'
                 >
                   seasonal

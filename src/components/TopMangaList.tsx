@@ -6,6 +6,7 @@ import Loading from './Loading';
 import { CardProps } from '../types';
 
 import { fetchData } from '../api';
+import { Helmet } from 'react-helmet-async';
 
 const TopMangaList = () => {
   const {
@@ -26,12 +27,17 @@ const TopMangaList = () => {
   }
 
   return (
-    <div className='m-4 p-2 md:m-8'>
-      <h1 className='mb-4 font-bold'>top manga</h1>
-      <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
-        {topManga?.map((manga) => <Card key={manga.mal_id} info={manga} />)}
+    <>
+      <Helmet>
+        <title>top manga | animanga</title>
+      </Helmet>
+      <div className='m-4 p-2 md:m-8'>
+        <h1 className='mb-4 font-bold'>top manga</h1>
+        <div className='grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
+          {topManga?.map((manga) => <Card key={manga.mal_id} info={manga} />)}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
