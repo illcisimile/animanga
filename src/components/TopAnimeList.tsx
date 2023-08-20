@@ -3,6 +3,7 @@ import { useTopAnime } from '../hooks';
 
 import Card from './Card';
 import Loading from './Loading';
+import Error from './Error';
 
 const TopAnimeList = () => {
   const { data: topAnime, isLoading, isError, error } = useTopAnime();
@@ -12,7 +13,7 @@ const TopAnimeList = () => {
   }
 
   if (isError) {
-    return <div>Error: {(error as Error)?.message}</div>;
+    return <Error error={(error as Error)?.message} />;
   }
 
   return (

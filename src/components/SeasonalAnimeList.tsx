@@ -3,6 +3,7 @@ import { useSeasonalAnime } from '../hooks';
 
 import Card from './Card';
 import Loading from './Loading';
+import Error from './Error';
 
 const SeasonalAnimeList = () => {
   const { data: seasonalAnime, isLoading, isError, error } = useSeasonalAnime();
@@ -12,7 +13,7 @@ const SeasonalAnimeList = () => {
   }
 
   if (isError) {
-    return <div>Error: {(error as Error)?.message}</div>;
+    return <Error error={(error as Error)?.message} />;
   }
 
   return (

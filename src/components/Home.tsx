@@ -5,6 +5,7 @@ import { FaShuffle } from 'react-icons/fa6';
 import Info from './Info';
 import Loading from './Loading';
 import RandomQuote from './RandomQuote';
+import Error from './Error';
 
 const Home = () => {
   const {
@@ -40,7 +41,7 @@ const Home = () => {
         {isLoadingQuote ? (
           <Loading />
         ) : isErrorQuote ? (
-          <div>Error: {(errorQuote as Error)?.message}</div>
+          <Error error={(errorQuote as Error)?.message} />
         ) : (
           <RandomQuote details={randomQuote as RandomQuoteProps} />
         )}

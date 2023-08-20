@@ -3,6 +3,7 @@ import { useTopManga } from '../hooks';
 
 import Card from './Card';
 import Loading from './Loading';
+import Error from './Error';
 
 const TopMangaList = () => {
   const { data: topManga, isLoading, isError, error } = useTopManga();
@@ -12,7 +13,7 @@ const TopMangaList = () => {
   }
 
   if (isError) {
-    return <div>Error: {(error as Error)?.message}</div>;
+    return <Error error={(error as Error)?.message} />;
   }
 
   return (
