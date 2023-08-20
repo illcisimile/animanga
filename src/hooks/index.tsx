@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchData } from '../services';
+import { fetchData, fetchRandomQuote } from '../services';
 import { InfoProps, CardProps } from '../types';
 
 const randomUrls = [
@@ -9,6 +9,12 @@ const randomUrls = [
 
 const selectedRandomUrl =
   randomUrls[Math.floor(Math.random() * randomUrls.length)];
+
+export const useRandomQuote = () => {
+  return useQuery('randomQuote', () =>
+    fetchRandomQuote('https://animechan.xyz/api/random'),
+  );
+};
 
 export const useRandom = () => {
   return useQuery<InfoProps>('randomAnimeManga', () =>

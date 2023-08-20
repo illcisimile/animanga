@@ -1,26 +1,32 @@
-import { useRandom } from '../hooks';
+import { useRandomQuote, useRandom } from '../hooks';
 import { InfoProps } from '../types';
 import { FaShuffle } from 'react-icons/fa6';
 
 import Info from './Info';
 import Loading from './Loading';
+import RandomQuote from './RandomQuote';
 
 const Home = () => {
   const {
+    data: randomQuote,
+    isLoading: isLoadingQuote,
+    isError: isErrorQuote,
+    error: errorQuote,
+    refetch: refetchQuote,
+  } = useRandomQuote();
+
+  const {
     data: randomAnimeManga,
-    isLoading,
-    isError,
-    error,
-    refetch,
+    isLoading: isLoadingAnimeManga,
+    isError: isErrorAnimeManga,
+    error: errorAnimeManga,
+    refetch: refetchAnime,
   } = useRandom();
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (isError) {
-    return <div>Error: {(error as Error)?.message}</div>;
-  }
+  const handleRandom = () => {
+    refetchQuote();
+    refetchAnime();
+  };
 
   return (
     <div className='m-4 p-2 md:m-8'>
@@ -31,25 +37,30 @@ const Home = () => {
           type='text'
           placeholder='fate/stay night'
         />
-        <div className='max-w-4xl p-2'>
-          <blockquote className='text-center text-lg italic text-[#482307]'>
-            "In their heart, everyone has faith that their victory exists.
-            However, in the face of time and destiny, the act of faith is
-            fruitless and fleeting at best."
-          </blockquote>
-          <cite className='mt-4 block text-center text-[#482307]'>— C.C.</cite>
-        </div>
+        {isLoadingQuote ? (
+          <Loading />
+        ) : isErrorQuote ? (
+          <div>Error: {(errorQuote as Error)?.message}</div>
+        ) : (
+          <RandomQuote details={randomQuote} />
+        )}
       </div>
       <div className='flex flex-col items-center gap-2'>
-        <h3 className='font-semibold'>you might like</h3>
         <button
-          className='rounded bg-[#482307] px-4 py-2 font-bold text-white hover:bg-[#a1724e]'
-          onClick={() => refetch()}
+          className='rounded bg-[#482307] px-4 py-2 font-bold text-white hover:scale-105 hover:bg-[#a1724e]'
+          onClick={handleRandom}
         >
           random <FaShuffle className='inline' />
         </button>
+        <h3 className='font-semibold'>you might like</h3>
       </div>
-      <Info details={randomAnimeManga as InfoProps} />
+      {isLoadingAnimeManga ? (
+        <Loading />
+      ) : isErrorAnimeManga ? (
+        <div>Error: {(errorAnimeManga as Error)?.message}</div>
+      ) : (
+        <Info details={randomAnimeManga as InfoProps} />
+      )}
     </div>
   );
 };

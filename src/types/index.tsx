@@ -49,3 +49,9 @@ export interface InfoProps {
   episodes: number;
   season: string;
 }
+
+export interface RandomQuoteProps {
+  anime: string;
+  character: string;
+  quote: string;
+}
