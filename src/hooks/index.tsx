@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { fetchData, fetchRandomQuote } from '../services';
-import { InfoProps, CardProps } from '../types';
+import { InfoProps, CardProps, RandomQuoteProps } from '../types';
 
 const randomUrls = [
   'https://api.jikan.moe/v4/random/anime?sfw=true',
@@ -11,7 +11,7 @@ const selectedRandomUrl =
   randomUrls[Math.floor(Math.random() * randomUrls.length)];
 
 export const useRandomQuote = () => {
-  return useQuery('randomQuote', () =>
+  return useQuery<RandomQuoteProps>('randomQuote', () =>
     fetchRandomQuote('https://animechan.xyz/api/random'),
   );
 };

@@ -1,5 +1,5 @@
 import { useRandomQuote, useRandom } from '../hooks';
-import { InfoProps } from '../types';
+import { InfoProps, RandomQuoteProps } from '../types';
 import { FaShuffle } from 'react-icons/fa6';
 
 import Info from './Info';
@@ -42,7 +42,7 @@ const Home = () => {
         ) : isErrorQuote ? (
           <div>Error: {(errorQuote as Error)?.message}</div>
         ) : (
-          <RandomQuote details={randomQuote} />
+          <RandomQuote details={randomQuote as RandomQuoteProps} />
         )}
       </div>
       <div className='flex flex-col items-center gap-2'>
