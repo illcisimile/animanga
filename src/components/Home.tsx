@@ -1,29 +1,18 @@
-import { useQuery } from 'react-query';
+import { useRandom } from '../hooks';
+import { InfoProps } from '../types';
+import { FaShuffle } from 'react-icons/fa6';
 
 import Info from './Info';
 import Loading from './Loading';
 
-import { InfoProps } from '../types';
-
-import { fetchData } from '../api';
-
-import { FaShuffle } from 'react-icons/fa6';
-
 const Home = () => {
-  const apiUrls = [
-    'https://api.jikan.moe/v4/random/anime?sfw=true',
-    'https://api.jikan.moe/v4/random/manga?sfw=true',
-  ];
-
-  const selectedUrl = apiUrls[Math.floor(Math.random() * apiUrls.length)];
-
   const {
     data: randomAnimeManga,
     isLoading,
     isError,
     error,
     refetch,
-  } = useQuery<InfoProps>('randomAnimeManga', () => fetchData(selectedUrl));
+  } = useRandom();
 
   if (isLoading) {
     return <Loading />;

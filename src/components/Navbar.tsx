@@ -23,7 +23,6 @@ const Navbar = () => {
               <Link
                 to='/'
                 className='p-2 text-2xl font-extrabold hover:rounded hover:bg-[#a1724e] hover:text-white'
-                onClick={hideMobileMenu}
               >
                 animanga
               </Link>
@@ -71,7 +70,7 @@ const Navbar = () => {
               <li>
                 <Link
                   className='block p-2 font-semibold hover:rounded hover:bg-[#a1724e] hover:text-white'
-                  to='/seasonal'
+                  to='/seasonal-anime'
                   onClick={hideMobileMenu}
                 >
                   seasonal

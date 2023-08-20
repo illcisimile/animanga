@@ -1,22 +1,11 @@
-import { useQuery } from 'react-query';
+import { Helmet } from 'react-helmet-async';
+import { useTopAnime } from '../hooks';
 
 import Card from './Card';
 import Loading from './Loading';
 
-import { CardProps } from '../types';
-
-import { fetchData } from '../api';
-import { Helmet } from 'react-helmet-async';
-
 const TopAnimeList = () => {
-  const {
-    data: topAnime,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<CardProps[]>('topAnime', () =>
-    fetchData('https://api.jikan.moe/v4/top/anime?limit=10&sfw=true'),
-  );
+  const { data: topAnime, isLoading, isError, error } = useTopAnime();
 
   if (isLoading) {
     return <Loading />;
